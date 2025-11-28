@@ -1,0 +1,65 @@
+.MODEL SMALL
+.STACK 100H
+
+.DATA
+A DB 'HELLO$'
+B DB 'BEST$'
+C DB 'FRIEND$'
+D EQU 10
+E EQU 13
+
+.CODE
+MAIN PROC
+    MOV AX,@DATA
+    MOV DS,AX
+
+    MOV CX,5
+AA:
+    LEA DX,A
+    MOV AH,9
+    INT 21H
+
+    MOV AH,2
+    MOV DL,D
+    INT 21H
+    MOV DL,E
+    INT 21H
+
+    DEC CX
+    CMP CX,3
+    JG AA
+
+BB:
+    LEA DX,B
+    MOV AH,9
+    INT 21H
+
+    MOV AH,2
+    MOV DL,D
+    INT 21H
+    MOV DL,E
+    INT 21H
+
+    DEC CX
+    CMP CX,0
+    JNLE BB
+
+    LEA DX,C
+    MOV AH,9
+    INT 21H
+
+    MOV AH,2
+    MOV DL,D
+    INT 21H
+    MOV DL,E
+    INT 21H
+
+EXIT:
+    LEA DX,C
+    MOV AH,9
+    INT 21H
+
+    MOV AH,4CH
+    INT 21H
+MAIN ENDP
+END MAIN

@@ -1,0 +1,6 @@
+ORG 100h
+ MOV AL, 05h
+ MOV BL, 03h
+ ADD AL, BL
+ HLT
+ END
