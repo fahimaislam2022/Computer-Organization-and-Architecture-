@@ -1,0 +1,32 @@
+
+
+.MODEL SMALL
+.STACK 100H
+.DATA
+.CODE
+
+MAIN PROC
+    MOV AX, @DATA
+    MOV DS, AX
+
+    ; INPUT N
+    MOV AH, 01H
+    INT 21H
+    SUB AL, 30H      ; ASCII TO NUMBER
+
+    MOV CL, AL
+    MOV CH, 0        ; CX = N
+
+    JCXZ EXITPROG
+
+PRINTLOOP:
+    MOV DL, '#'
+    MOV AH, 02H
+    INT 21H
+    LOOP PRINTLOOP
+
+EXITPROG:
+    MOV AH, 4CH
+    INT 21H
+MAIN ENDP
+END MAIN
